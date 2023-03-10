@@ -1,8 +1,15 @@
-def getUpdater(accDifferentialEq, initialConditions):
-    """"
-    Returns function that will update a,v,x for dt. Argument is lambda contaning a,v,x dependency and initial conditions
+def getUpdater(accDifferentialEq, conditions):
     """
-    conditions = initialConditions
+    Returns function that will update a,v,x for dt.
+
+    Parameters
+    ----------
+    accDifferentialEq
+        Lambda contaning a,v,x dependency that calculates acceleration.
+    conditions
+        Initial conditions (v, x)
+    """
+    conditions = None, *conditions
 
     def updater(dt):
         nonlocal conditions
