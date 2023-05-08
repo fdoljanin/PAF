@@ -18,7 +18,7 @@ class Particle(MovableObject):
         self.area = area
         super().__init__(initial_position, initial_velocity)
 
-    def get_acceleration(self, air, velocity=None, **_):
+    def _get_acceleration(self, air, velocity=None, **_):
         if velocity is None:
             velocity = self.velocity
 
@@ -42,7 +42,7 @@ class Particle(MovableObject):
         return p, v, t
 
     def get_euler_graph(self, air, dt, time_observed):
-        return self.get_graph(time_observed, lambda: self.move_euler(dt, air=air))
+        return self.get_graph(time_observed, lambda: self._move_euler(dt, air=air))
 
     def get_runge_kutta_graph(self, air, dt, time_observed):
-        return self.get_graph(time_observed, lambda: self.move_runge_kutta(dt, air=air))
+        return self.get_graph(time_observed, lambda: self._move_runge_kutta(dt, air=air))
