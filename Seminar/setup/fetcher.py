@@ -1,14 +1,12 @@
 import os
 import csv
-
-import requests
-import gzip
-import shutil
-
 from itertools import islice
 
+from network import download_gzip
+
+
 DATA_URL = "http://cdsarc.u-strasbg.fr/viz-bin/nph-Cat/txt.gz?I/239/hip_main.dat"
-FULL_DATA_FILE_NAME = "../data/I_239_hip_main.txt"
+FULL_DATA_FILE_NAME = "../data/I_239_hip_main.dat"
 CSV_DATA_FILE_NAME = "../data/hip_main.csv"
 DATA_START_INDEX = 12
 DATA_END_INDEX = 118230
@@ -19,9 +17,10 @@ csv_data_path = os.path.join(dirname, CSV_DATA_FILE_NAME)
 
 
 def download_and_save():
-    response = requests.get(DATA_URL)
-    with open(full_data_path, 'wb') as data_file:
-        data_file.write(response.content)
+    parseable_data = download_gzip(DATA_URL)
+    with open(full_data_path, 'wb') as f:
+        for chunk in parseable_data:
+            f.write(chunk)
 
 
 def line_to_data(line):
@@ -46,4 +45,5 @@ def data_to_csv():
 
 
 download_and_save()
-# data_to_csv()
+data_to_csv()
+print("Done.")
