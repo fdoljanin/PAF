@@ -1,0 +1,46 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[croatian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{lipsum}
+\usepackage[useregional]{datetime2}
+\usepackage{url}
+
+\addtolength{\voffset}{-2cm} \addtolength{\textheight}{4cm}
+\addtolength{\hoffset}{-1cm} \addtolength{\textwidth}{2cm}
+\selectlanguage{croatian}
+
+\newcommand*{\devname}{\texttt}
+\newcommand*{\techspec}{\textsc}
+\newcommand*{\term}{\textit}
+\newcommand{\sitename}[1]{\texttt{"#1"}}
+\renewcommand*{\emph}{\textbf}
+
+\newcommand*{\maketitlepage}{%intro
+  \begin{center}
+    Sveučilište u Splitu\\
+    Prirodoslovno-matematički fakultet\\
+    Odjel za fiziku
+
+    \bigskip
+    \bigskip
+
+    \large{Programski alati u fizici}
+
+
+    \bigskip
+    \bigskip
+
+    \textbf{{\Large{Brojanje zvijezda na noćnom nebu}}}
+  \end{center}
+  \begin{center}
+    \textbf{Frane Doljanin}\\
+    \
+  \end{center}
+  \begin{center}
+    Split, \DTMdate{2023-6-8}
+  \end{center}
+}

@@ -5,7 +5,7 @@ Korišteni su podatci satelita [hipparcos](https://www.cosmos.esa.int/web/hippar
 
 ## Koraci za instalaciju
 
-Prije svega, potrebno je imati instaliran [Python 3.x](https://www.python.org/downloads/). Nakon kloniranja ovog repozitorija na računalo, potrebno je preuzeti podatke satelita Hipparcos tako što se uđe u folder [Seminar](/) i pokrene naredba
+Prije svega, potrebno je imati instaliran [Python 3.x](https://www.python.org/downloads/). Nakon kloniranja ovog repozitorija na računalo, potrebno je preuzeti podatke satelita Hipparcos tako što se uđe ovaj folder i pokrene naredba
 
 ```
 python code/setup/fetcher.py
@@ -26,3 +26,7 @@ python code/counter/main.py
 ```
 
 Program će korisnika pitati za naziv lokacije za koju želi provjeriti vidljiv broj zvijezda, nakon čega će biti ispisan.
+
+## Seminar
+
+Seminar s LaTeX-om se nalazi u mapi [paper](paper/), datoteka [seminar](paper/seminar.pdf).
