@@ -47,12 +47,13 @@ Fascinacija noćnim nebom često je zanemarena u gradovima kao posljedica oneči
 \par
 U ovom radu korišteni su podatci satelita Hipparcos, koji je u razdoblju od 1989. do 1993. godine snimio preko 100 000 zvijezda. Podatci su javno dostupni na stranici VizieR \cite{ct:VizieR}, a u ovom radu korišteni su podatci o zvijezdama iz kataloga I/239/hip\_main.dat.
 Naravno, svih 100 000 zvijezda nije vidljivo na nebu, već samo one najsjajnije, pozicionirane tako da ih Zemlja ne prekriva. Da bismo filtrirali samo takve zvijezde, koristimo se stupcima RAdeg, DEdeg i VMag.
+
 \subsection{Položaj na nebeskoj sferi}
 Položaj zvijezde na noćnom nebu ovisi o položaju promatrača na Zemlji, stoga je potreban način koji bi trajno opisao poziciju zvijezde neovisno o promatraču. Zato se koristimo rektascenzijom i deklinacijom.
 
-Rektascenzija (eng. \emph{right ascension}, pokrata RA) je koordinata koja mjeri kut između ravnine nebeskog meridijana i ravnine satne kružnice zvijezde. Ova koordinata određuje položaj zvijezde u smjeru istoka. Rektascenzija je ekvivalentna pojmu geografske dužine na Zemlji, gdje 360 stupnjeva predstavlja puni krug od 24 sata.
+Rektascenzija (eng. \texttt{right ascension}, pokrata RA) je koordinata koja mjeri kut između ravnine nebeskog meridijana i ravnine satne kružnice zvijezde. Ova koordinata određuje položaj zvijezde u smjeru istoka. Rektascenzija je ekvivalentna pojmu geografske dužine na Zemlji, gdje 360 stupnjeva predstavlja puni krug od 24 sata.
 
-Deklinacija (eng. \emph{declination}, pokrata DE), s druge strane, izražava se u stupnjevima i mjeri kut između nebeskog ekvatora i zvijezde. Ova koordinata određuje položaj zvijezde u smjeru sjevera ili juga, ovisno o tome je li deklinacija pozitivna ili negativna. Deklinacija se mjeri u rasponu od -90° do +90°.
+Deklinacija (eng. \texttt{declination}, pokrata DE), s druge strane, izražava se u stupnjevima i mjeri kut između nebeskog ekvatora i zvijezde. Ova koordinata određuje položaj zvijezde u smjeru sjevera ili juga, ovisno o tome je li deklinacija pozitivna ili negativna. Deklinacija se mjeri u rasponu od -90° do +90°.
 
 Kombinacija rektascenzije i deklinacije omogućuje jedinstveno određivanje položaja zvijezda na nebeskoj sferi. Ove koordinate omogućuju precizno lociranje zvijezda bez obzira na promatračevu lokaciju na Zemlji.
 
@@ -72,22 +73,31 @@ Još je potrebno odrediti može li ljudsko oko u idealnim noćnim uvjetima vidje
 Prividna magnituda se mjeri na skali u kojoj manje vrijednosti označavaju sjajnije objekte, dok veće vrijednosti označavaju tamnije objekte. Na primjer, vrlo svijetle zvijezde imaju negativne vrijednosti prividne magnitude, dok tamnije zvijezde imaju pozitivne vrijednosti. Prosječno ljudsko oko vidi zvijezde do magnitude 6.5, pa zanemarujemo sve one zvijzde s magnitudom većom od navedene.
 
 
-
 \section{Diskusija i rezultati}
-Podatci su preuzeti i obrađeni u programskom jeziku Python.
-\subsection{Setup}
+Podatci su obrađeni u programskom jeziku Python.
 
+\subsection{Postavljanje}
+Prije svega, potrebno je preuzeti bazu podataka na lokalno računalo. Datoteka s podatcima zauzima $\approx$ 50MB i zbog svoje veličine nije uključena u remote.
+Da bi datoteka bila preuzeta, pokreće se skripta fetcher.py. Ona koristi library requests za preuzimanje datoteke s interneta, zlib za dekompresiju s obzirom na to da je datoteka gzipirana, te os za pisanje na disk. Nakon što funkcija download\_and\_save završi s preuzimanjem, datoteka I\_239\_hip\_main.dat i dalje nije pogodna za obradu jer se podatci nalaze u formatu koji je podržan samo od Astropy paketa, a i prevelika je za učitavanje u memoriju ako ćemo je više puta pokretati. Kako bi se izbjegle poteškoće, funkcija data\_to\_csv pretvara datoteku u csv format pogodan za obradu, i to samo one stupce koji su nam potrebni - VMag, RAdeg, DEdeg.
 
+\subsection{Brojač}
+Nakon uspješnog postavljanja, možemo početi s brojanjem.
+Kako broj vidljivih zvijezda ovisi o poziciji na Zemlji, korisnik je upitan za promatrani grad, pa preko Geocoding API-ja dobivamo geografske koordinate grada. Trenutno UTC vrijeme doznaje se pomoću datetime libraryja.
+Sada u CSV datoteci idemo liniju po liniju, pritom učitavajući samo trenutnu zvijezdu u memoriju. Svaku zvijezdu proslijedimo funkciji check\_is\_visible, koja vraća True ako je zvijezda vidljiva, a False ako nije. Ako je zvijezda vidljiva, povećamo brojač vidljivih zvijezda za 1. Na kraju, ispišemo broj vidljivih zvijezda.
+
+Funkcija check\_is\_visible provjerava prethodno navedene fizikalne uvjete, odnosno činjenicu da VMag mora biti manja od 6.5 i da je elevacija pozitivna. Sama implementacija jasna je iz koda.
 
 \section{Zaključak}
-Par rečenica (3-5) o tome što ste zaključili iz rezultata koda, što bi se moglo popraviti, ako nešto nije kako ste predvidili i sl....
+Iz rezultata programa jasno je da broj zvijezda značajno ne varira tijekom noći i da je svjetlosno onečišćenje krivac za slabu vidljivost zvijezda tijekom noći, budući da bi, sudeći po brojkama, u noćnim uvjetima trebao biti spektakl.
+
+Kod je mogao izbaciti točniji rezultat tako što u obzir uzme reljef, zgrade i sl. te uračuna onečišćenje, ali to je izvan okvira ovog rada. Također, mogao se značajno brže izvršavati da je napisan u C++ ili nekom drugom kompajliranom jeziku koji podržava višedretvenost, ali to nije ni bitno jer program nije namijenjen velikom broju izvršenja i trebaju mu najviše dvije sekunde da se izvrši.
 
 
 
 \begin{thebibliography}{9}
   \bibitem{ct:VizieR}
   VizieR Online Data Catalog: I/239 (Hipparcos, 1997),\\
-  \url{http://cdsarc.u-strasbg.fr/viz-bin/nph-Cat/txt.gz?I/239/hip_main.dat}
+  \url{http://cdsarc.u-strasbg.fr/viz-bin/nph-Cat/txt.gz?I/239/hip\_main.dat}
 \end{thebibliography}
 
 \end{document}
