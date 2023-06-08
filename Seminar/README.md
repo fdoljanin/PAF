@@ -5,10 +5,10 @@ Korišteni su podatci satelita [hipparcos](https://www.cosmos.esa.int/web/hippar
 
 ## Koraci za instalaciju
 
-Prije svega, potrebno je imati instaliran [Python 3.x](https://www.python.org/downloads/). Nakon kloniranja repozitorija na računalo, potrebno je preuzeti podatke satelita Hipparcos tako što se uđe u folder [Seminar](Seminar/) i pokrene naredba
+Prije svega, potrebno je imati instaliran [Python 3.x](https://www.python.org/downloads/). Nakon kloniranja ovog repozitorija na računalo, potrebno je preuzeti podatke satelita Hipparcos tako što se uđe u folder [Seminar](/) i pokrene naredba
 
 ```
-python setup/fetcher.py
+python code/setup/fetcher.py
 ```
 
 Nakon što se kod izvrši, u mapi `data` pojavit će se datoteke `I_239_hip_main.dat` i `hip_main.csv`.
@@ -22,7 +22,7 @@ Također, ispisat će se poruke pogreške zbog određenih linija Hipparcos katal
 Brojač se pokreće naredbom
 
 ```
-python counter/main.py
+python code/counter/main.py
 ```
 
-Program će korisnika pitati za naziv lokacije za koju želi provjeriti vidljiv broj zvijezda.
+Program će korisnika pitati za naziv lokacije za koju želi provjeriti vidljiv broj zvijezda, nakon čega će biti ispisan.

@@ -28,4 +28,4 @@ def get_star_checker(location, time):
     def is_observable_local(star): return is_observable(
         star, location, jd_time)
 
-    return get_checker([is_observable_local, is_visible_by_eye])
+    return get_checker([is_visible_by_eye, is_observable_local])

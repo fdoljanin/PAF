@@ -1,0 +1,99 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[croatian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{lipsum}
+\usepackage[useregional]{datetime2}
+\usepackage{url}
+
+\addtolength{\voffset}{-2cm} \addtolength{\textheight}{4cm}   
+\addtolength{\hoffset}{-1cm} \addtolength{\textwidth}{2cm}
+\selectlanguage{croatian}
+
+\begin{document}
+
+\begin{center}
+  Sveučilište u Splitu\\
+  Prirodoslovno-matematički fakultet\\
+  Odjel za fiziku
+
+  \bigskip
+  \bigskip
+
+  \large{Programski alati u fizici}
+
+
+  \bigskip
+  \bigskip
+
+  \textbf{{\Large{Brojanje zvijezda na noćnom nebu}}}
+\end{center}
+\begin{center}
+  \textbf{Frane Doljanin}\\
+  \
+\end{center}
+\begin{center}
+  Split, \DTMdate{2023-6-8}
+\end{center}
+
+\section*{Sažetak}
+Cilj ovog rada bio je izračunati broj zvijezda na noćnom nebu koristeći podatke satelita Hipparcos. U radu je korištena javno dostupna baza podataka VizieR \cite{ct:VizieR} s podatcima o zvijezdama, a koji su obrađeni u programskom jeziku Python. U radu je opisan postupak obrade podataka, te su prikazani rezultati i zaključci - u prosjeku se vidi $\approx$ 4200 zvijezda na noćnom nebu.
+
+\section{Uvod}
+Fascinacija noćnim nebom često je zanemarena u gradovima kao posljedica onečišćene atmosfere i svjetlosnog zagađenja. Ovaj program omogućuje da se izračuna broj zvijezda na noćnom nebu, te da se vidi kako se on mijenja s promjenom lokacije promatrača.
+\par
+U ovom radu korišteni su podatci satelita Hipparcos, koji je u razdoblju od 1989. do 1993. godine snimio preko 100 000 zvijezda. Podatci su javno dostupni na stranici VizieR \cite{ct:VizieR}, a u ovom radu korišteni su podatci o zvijezdama iz kataloga I/239/hip\_main.dat.
+Naravno, svih 100 000 zvijezda nije vidljivo na nebu, već samo one najsjajnije, pozicionirane tako da ih Zemlja ne prekriva. Da bismo filtrirali samo takve zvijezde, koristimo se stupcima RAdeg, DEdeg i VMag.
+\subsection{Položaj na nebeskoj sferi}
+Položaj zvijezde na noćnom nebu ovisi o položaju promatrača na Zemlji, stoga je potreban način koji bi trajno opisao poziciju zvijezde neovisno o promatraču. Zato se koristimo rektascenzijom i deklinacijom.
+
+Rektascenzija (eng. \emph{right ascension}, pokrata RA) je koordinata koja mjeri kut između ravnine nebeskog meridijana i ravnine satne kružnice zvijezde. Ova koordinata određuje položaj zvijezde u smjeru istoka. Rektascenzija je ekvivalentna pojmu geografske dužine na Zemlji, gdje 360 stupnjeva predstavlja puni krug od 24 sata.
+
+Deklinacija (eng. \emph{declination}, pokrata DE), s druge strane, izražava se u stupnjevima i mjeri kut između nebeskog ekvatora i zvijezde. Ova koordinata određuje položaj zvijezde u smjeru sjevera ili juga, ovisno o tome je li deklinacija pozitivna ili negativna. Deklinacija se mjeri u rasponu od -90° do +90°.
+
+Kombinacija rektascenzije i deklinacije omogućuje jedinstveno određivanje položaja zvijezda na nebeskoj sferi. Ove koordinate omogućuju precizno lociranje zvijezda bez obzira na promatračevu lokaciju na Zemlji.
+
+U ovom radu, koristimo stupce RAdeg (rektascenzija u stupnjevima) i DEdeg (deklinacija u stupnjevima) iz podataka satelita Hipparcos kako bismo odredili položaj zvijezda na noćnom nebu.
+
+\subsection{Položaj na noćnom nebu}
+Kada je riječ o trenutnom položaju zvijezde iz perspektive promatrača, koristimo se azimutom i elevacijom.
+
+Azimut je kut između vertikalne ravnine koja prolazi nebeskim polom do vertikalne ravnine koja prolazi točkom opažanja. Mjeri u rasponu od 0° do 360°, gdje 0° predstavlja sjever, 90° istok, 180° jug i 270° zapad.
+
+Elevacija (ili visina) je kut između horizontalne ravnine i linije koja spaja promatrača i zvijezdu. Mjeri se u stupnjevima i obično ima raspon od -90° do +90°. Kada je elevacija pozitivna, zvijezda je iznad horizonta i promatrač ju može vidjeti. Ako je elevacija negativna, zvijezda je ispod horizonta i nije vidljiva s tog promatračevog položaja.
+
+Dakle, potrebno je, poznavajući trenutno vrijeme i promatračeve geografske koordinate, izračunati azimut i elevaciju za svaku zvijezdu. U slučaju da je elevacija pozitivna, zvijezdu je moguće vidjeti po pitanju pozicije, a u slučaju da je negativna, nalazi se ispod horizonta i sigurno nije vidljiva.
+
+\subsection{Sjaj zvijezde}
+Još je potrebno odrediti može li ljudsko oko u idealnim noćnim uvjetima vidjeti zvijezdu. To ovisi o prividnoj magnitudi, koja mjeri prividni sjaj zvijezde na nebu. Ona ovisi o samoj zvijezdi i udaljenosti od Zemlje.
+Prividna magnituda se mjeri na skali u kojoj manje vrijednosti označavaju sjajnije objekte, dok veće vrijednosti označavaju tamnije objekte. Na primjer, vrlo svijetle zvijezde imaju negativne vrijednosti prividne magnitude, dok tamnije zvijezde imaju pozitivne vrijednosti. Prosječno ljudsko oko vidi zvijezde do magnitude 6.5, pa zanemarujemo sve one zvijzde s magnitudom većom od navedene.
+
+
+
+\section{Diskusija i rezultati}
+Podatci su preuzeti i obrađeni u programskom jeziku Python.
+\subsection{Setup}
+
+
+
+\section{Zaključak}
+Par rečenica (3-5) o tome što ste zaključili iz rezultata koda, što bi se moglo popraviti, ako nešto nije kako ste predvidili i sl....
+
+
+
+\begin{thebibliography}{9}
+  \bibitem{ct:VizieR}
+  VizieR Online Data Catalog: I/239 (Hipparcos, 1997),\\
+  \url{http://cdsarc.u-strasbg.fr/viz-bin/nph-Cat/txt.gz?I/239/hip_main.dat}
+\end{thebibliography}
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Izmijenjeno od:        Uzorak dokumenta za seminar iz moderne fizike, 2019.          %
+%                            Mislav Cvitković, Split, svibanj 2019.                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
