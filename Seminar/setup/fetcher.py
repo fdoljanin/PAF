@@ -1,4 +1,5 @@
 import os
+import sys
 import csv
 from itertools import islice
 
@@ -41,7 +42,9 @@ def data_to_csv():
                 new_data = line_to_data(line)
                 csv_writer.writerow(new_data)
             except:
-                print(f"Error on line {line_num+1} - missing some values.")
+                should_ignore_warning = '--iw' in sys.argv
+                if not should_ignore_warning:
+                    print(f"Error on line {line_num+1} - missing some values.")
 
 
 download_and_save()

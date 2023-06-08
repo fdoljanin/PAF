@@ -7,7 +7,9 @@ from criteria import *
 from request_helper import *
 
 DATA_FILE_NAME = "../data/hip_main.csv"
-data_path = os.path.realpath(DATA_FILE_NAME)
+
+dirname = os.path.dirname(__file__)
+data_path = os.path.join(dirname, DATA_FILE_NAME)
 
 observed_location_name = input("Enter location name:\t")
 current_location = get_location_from_name(observed_location_name)
