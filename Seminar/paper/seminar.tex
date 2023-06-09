@@ -65,7 +65,7 @@ Nakon uspješnog postavljanja, možemo početi s brojanjem.
 Kako broj vidljivih zvijezda ovisi o poziciji na Zemlji, korisnik je upitan za promatrani grad, pa preko Geocoding API-ja dobivamo geografske koordinate grada. Trenutno UTC vrijeme doznaje se pomoću \devname{datetime} libraryja.
 Sada u CSV datoteci idemo liniju po liniju, pritom učitavajući samo trenutnu zvijezdu u memoriju. Svaku zvijezdu proslijedimo funkciji \devname{check\_is\_visible}, koja vraća \devname{True} ako je zvijezda vidljiva, a \devname{False} ako nije. Ako je zvijezda vidljiva, povećamo brojač vidljivih zvijezda za 1. Na kraju, ispišemo broj vidljivih zvijezda.
 
-Funkcija \devname{check\_is\_visible} provjerava prethodno navedene fizikalne uvjete, odnosno činjenicu da \techspec{VMag} mora biti manja od 6.5 i da je elevacija pozitivna. Sama implementacija jasna je iz koda. Za transformaciju iz \techspec{RAdeg} i \techspec{DEdeg} u azimut i elevaciju koristio sam se formulama s interneta. \cite{ct:transform} 
+Funkcija \devname{check\_is\_visible} provjerava prethodno navedene fizikalne uvjete, odnosno činjenicu da \techspec{VMag} mora biti manja od 6.5 i da je elevacija pozitivna. Sama implementacija jasna je iz koda. Za transformaciju iz \techspec{RAdeg} i \techspec{DEdeg} u azimut i elevaciju koristio sam se formulama s interneta. \cite{ct:transform}
 
 \begin{figure}[h]
   \begin{minipage}[t]{0.48\linewidth}
@@ -90,23 +90,23 @@ Kôd je mogao izbaciti točniji rezultat tako što u obzir uzme reljef, zgrade i
 
 \begin{thebibliography}{9}
   \bibitem{ct:VizieR}
-    VizieR Online Data Catalog: I/239 (Hipparcos, 1997),\\
-    \url{http://cdsarc.u-strasbg.fr/viz-bin/nph-Cat/txt.gz?I/239/hip\_main.dat}
+  VizieR Online Data Catalog: I/239 (Hipparcos, 1997),\\
+  \url{http://cdsarc.u-strasbg.fr/viz-bin/nph-Cat/txt.gz?I/239/hip\_main.dat}
   \bibitem{ct:equatorial_coords}
-    Nebeski ekvatorski koordinatni sustav, \sitename{Wikipedia} \\
-    \url{https://en.wikipedia.org/wiki/Equatorial_coordinate_system}
+  Nebeski ekvatorski koordinatni sustav, \sitename{Wikipedia} \\
+  \url{https://en.wikipedia.org/wiki/Equatorial_coordinate_system}
   \bibitem{ct:vmag}
-    Prividna magnituda, \sitename{Planetary Sciences}\\
-    \url{https://planetary-science.org/astronomy/magnitudes-brightness/}
+  Prividna magnituda, \sitename{Planetary Sciences}\\
+  \url{https://planetary-science.org/astronomy/magnitudes-brightness/}
   \bibitem{ct:transform}
-    Tansformacija iz \techspec{RAdeg} i \techspec{DEdeg} u azimut i elevaciju, \sitename{Astrogreg}\\
-    \url{https://astrogreg.com/convert_ra_dec_to_alt_az.html}
+  Tansformacija iz \techspec{RAdeg} i \techspec{DEdeg} u azimut i elevaciju, \sitename{Astrogreg}\\
+  \url{https://astrogreg.com/convert_ra_dec_to_alt_az.html}
   \bibitem{ct:ra_de-img}
-    Slika nebeskih koordinata, \sitename{SDSS Voyages}\\
-    \url{https://voyages.sdss.org/preflight/locating-objects/ra-dec/}
+  Slika nebeskih koordinata, \sitename{SDSS Voyages}\\
+  \url{https://voyages.sdss.org/preflight/locating-objects/ra-dec/}
   \bibitem{ct:el_as-img}
-    Slika elevacije i azimuta, \sitename{timeanddate}\\
-    \url{https://c.tadst.com/gfx/1200x630/horizontal-coordinate-system.png}
+  Slika elevacije i azimuta, \sitename{timeanddate}\\
+  \url{https://c.tadst.com/gfx/1200x630/horizontal-coordinate-system.png}
 
 \end{thebibliography}
 
