@@ -7,17 +7,22 @@ from network import download_gzip
 
 
 DATA_URL = "http://cdsarc.u-strasbg.fr/viz-bin/nph-Cat/txt.gz?I/239/hip_main.dat"
-FULL_DATA_FILE_NAME = "../data/I_239_hip_main.dat"
-CSV_DATA_FILE_NAME = "../data/hip_main.csv"
+DATA_FOLDER_NAME = "../data"
+FULL_DATA_FILE_NAME = f"{DATA_FOLDER_NAME}/I_239_hip_main.dat"
+CSV_DATA_FILE_NAME = f"{DATA_FOLDER_NAME}/hip_main.csv"
 DATA_START_INDEX = 12
 DATA_END_INDEX = 118230
 
 dirname = os.path.dirname(__file__)
+data_folder_path = os.path.join(dirname, DATA_FOLDER_NAME)
 full_data_path = os.path.join(dirname, FULL_DATA_FILE_NAME)
 csv_data_path = os.path.join(dirname, CSV_DATA_FILE_NAME)
 
 
 def download_and_save():
+    if not os.path.exists(data_folder_path):
+        os.makedirs(data_folder_path)
+
     parseable_data = download_gzip(DATA_URL)
     with open(full_data_path, 'wb') as f:
         for chunk in parseable_data:
