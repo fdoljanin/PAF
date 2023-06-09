@@ -1,6 +1,6 @@
 import os
 import csv
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 
 from classes import *
 from criteria import *
@@ -34,5 +34,6 @@ def main():
 
     visible_stars_count = count_stars(current_location, current_time)
     print(f"Visible stars: {visible_stars_count}")
+
 
 main()

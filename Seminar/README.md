@@ -30,3 +30,4 @@ Program će korisnika pitati za naziv lokacije za koju želi provjeriti vidljiv 
 ## Seminar
 
 Seminar s LaTeX-om se nalazi u mapi [paper](paper/), datoteka [seminar](paper/seminar.pdf).
+Prezentacija s LaTeX-om se nalazi u mapi [presentation](presentation/), datoteka [slides](presentation/slides.pdf).
